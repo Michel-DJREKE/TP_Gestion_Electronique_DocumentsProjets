@@ -1,0 +1,762 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "API REST",
+    "description": "Cette API permet de gérer les projets, les utilisateurs et les documents pour eBA. Elle inclut des fonctionnalités pour ajouter, modifier et archiver des projets, créer et gérer des utilisateurs, ainsi que suivre les documents avec leurs attributs et historiques. Les documents sont stockés sur le serveur avec un chemin structuré par client, projet et document.EndFragment",
+    "version": "1.0.0"
+  },
+  "servers": [
+    {
+      "url": "http://127.0.0.1:8000"
+    }
+  ],
+  "tags": [
+    {
+      "name": "Document",
+      "description": "Gérer les documents dans le système."
+    },
+    {
+      "name": "Projet",
+      "description": "Gérer les projets dans le système."
+    },
+    {
+      "name": "Historique",
+      "description": "Gérer l'historique des actions pour les documents et les utilisateurs."
+    },
+    {
+      "name": "Utilisateur",
+      "description": "Gérer les utilisateurs du système"
+    },
+    {
+      "name": "Authentification",
+      "description": "tGérer les processus d'authentification et de réinitialisation des mots de passe"
+    },
+    {
+      "name": "Registre",
+      "description": "**Créer** des utilisateurs"
+    }
+  ],
+  "paths": {
+    "/api/documents": {
+      "post": {
+        "tags": [
+          "Document"
+        ],
+        "summary": "Create document",
+        "description": "Création d'un nouveau document",
+        "requestBody": {
+          "content": {}
+        },
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {}
+            }
+          }
+        }
+      },
+      "get": {
+        "tags": [
+          "Document"
+        ],
+        "summary": "Index Document",
+        "description": "Afficher les documents",
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {}
+            }
+          }
+        }
+      }
+    },
+    "/api/documents/{document}": {
+      "get": {
+        "tags": [
+          "Document"
+        ],
+        "summary": "Show document",
+        "description": "Afficher un document",
+        "parameters": [
+          {
+            "name": "document",
+            "in": "path",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {}
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Document"
+        ],
+        "summary": "Update document",
+        "description": "Mettre à jour les informations d'un document",
+        "requestBody": {
+          "content": {}
+        },
+        "parameters": [
+          {
+            "name": "document",
+            "in": "path",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {}
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Document"
+        ],
+        "summary": "Delete document",
+        "description": "Supprimer un document",
+        "parameters": [
+          {
+            "name": "document",
+            "in": "path",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {}
+            }
+          }
+        }
+      }
+    },
+    "/api/documents/upload": {
+      "post": {
+        "tags": [
+          "Document"
+        ],
+        "summary": "Upload document",
+        "description": "Uploader un document",
+        "requestBody": {
+          "content": {}
+        },
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {}
+            }
+          }
+        }
+      }
+    },
+    "/api/documents/{document_id}/archiver": {
+      "patch": {
+        "tags": [
+          "Document"
+        ],
+        "summary": "Archiver document",
+        "description": "Archiver su document",
+        "requestBody": {
+          "content": {}
+        },
+        "parameters": [
+          {
+            "name": "document_id",
+            "in": "path",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {}
+            }
+          }
+        }
+      }
+    },
+    "/api/documents/{document_id}/desarchiver": {
+      "patch": {
+        "tags": [
+          "Document"
+        ],
+        "summary": "Desarchiver document",
+        "description": "Désarchiver un document",
+        "requestBody": {
+          "content": {}
+        },
+        "parameters": [
+          {
+            "name": "document_id",
+            "in": "path",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {}
+            }
+          }
+        }
+      }
+    },
+    "/api/projets/{projet_id}": {
+      "get": {
+        "tags": [
+          "Projet"
+        ],
+        "summary": "Show projet",
+        "description": "Afficher un projet",
+        "parameters": [
+          {
+            "name": "projet_id",
+            "in": "path",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {}
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Projet"
+        ],
+        "summary": "Update projet",
+        "description": "Faire la mise à jour d'un projet",
+        "requestBody": {
+          "content": {}
+        },
+        "parameters": [
+          {
+            "name": "projet_id",
+            "in": "path",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {}
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Projet"
+        ],
+        "summary": "Delete projet",
+        "description": "Spprimer un projet",
+        "parameters": [
+          {
+            "name": "projet_id",
+            "in": "path",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {}
+            }
+          }
+        }
+      }
+    },
+    "/api/projets": {
+      "post": {
+        "tags": [
+          "Projet"
+        ],
+        "summary": "Create projet",
+        "description": "Créer un projet",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "example": {
+                  "libelle": "Durando",
+                  "client": "Igbessou",
+                  "date_debut": "12/09/2024",
+                  "date_fin": ""
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {}
+            }
+          }
+        }
+      },
+      "get": {
+        "tags": [
+          "Projet"
+        ],
+        "summary": "Index projet",
+        "description": "Liste des projet",
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {}
+            }
+          }
+        }
+      }
+    },
+    "/api/projets/{id}/archiver": {
+      "patch": {
+        "tags": [
+          "Projet"
+        ],
+        "summary": "Archiver projet",
+        "description": "Archiver un projet",
+        "requestBody": {
+          "content": {}
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {}
+            }
+          }
+        }
+      }
+    },
+    "/api/projets/{id}/desarchiver": {
+      "patch": {
+        "tags": [
+          "Projet"
+        ],
+        "summary": "Desarchiver projet",
+        "description": "Désarchiver un projet",
+        "requestBody": {
+          "content": {}
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {}
+            }
+          }
+        }
+      }
+    },
+    "/api/historique": {
+      "post": {
+        "tags": [
+          "Historique"
+        ],
+        "summary": "Create historique",
+        "description": "**Enregistrer** les actions liées aux documents et aux utilisateurs",
+        "requestBody": {
+          "content": {}
+        },
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {}
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Historique"
+        ],
+        "summary": "Remove historique",
+        "description": "Supprimer les historiques",
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {}
+            }
+          }
+        }
+      }
+    },
+    "/api/historiques/{historique_id}": {
+      "get": {
+        "tags": [
+          "Historique"
+        ],
+        "summary": "Index historique",
+        "description": "Liste tous les historiques",
+        "parameters": [
+          {
+            "name": "historique_id",
+            "in": "path",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {}
+            }
+          }
+        }
+      }
+    },
+    "/api/auth/register": {
+      "post": {
+        "tags": [
+          "Registre"
+        ],
+        "summary": "Registre",
+        "description": "Afficher la liste des utilisateur",
+        "requestBody": {
+          "content": {}
+        },
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {}
+            }
+          }
+        }
+      }
+    },
+    "/api/utilisateurs": {
+      "get": {
+        "tags": [
+          "Utilisateur"
+        ],
+        "summary": "Index user",
+        "description": "Afficher tout les utilisateur",
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {}
+            }
+          }
+        }
+      }
+    },
+    "/api/utilisateur/{user_id}": {
+      "get": {
+        "tags": [
+          "Utilisateur"
+        ],
+        "summary": "Show user",
+        "description": "affiche les détails ou information d'un utilisateurs",
+        "parameters": [
+          {
+            "name": "user_id",
+            "in": "path",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {}
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Utilisateur"
+        ],
+        "summary": "Update user",
+        "description": "Mettre à jour les informations d'un utilisateur",
+        "requestBody": {
+          "content": {}
+        },
+        "parameters": [
+          {
+            "name": "user_id",
+            "in": "path",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {}
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Utilisateur"
+        ],
+        "summary": "Delete user",
+        "description": "Supprimer un utilisateur",
+        "parameters": [
+          {
+            "name": "user_id",
+            "in": "path",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {}
+            }
+          }
+        }
+      }
+    },
+    "/api/utilisateurs/{user_id}/desactiver": {
+      "patch": {
+        "tags": [
+          "Utilisateur"
+        ],
+        "summary": "Desactiver user",
+        "description": "Désactiver un utilisateur",
+        "requestBody": {
+          "content": {}
+        },
+        "parameters": [
+          {
+            "name": "user_id",
+            "in": "path",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {}
+            }
+          }
+        }
+      }
+    },
+    "/api/utilisateurs/{user_id}/activer": {
+      "patch": {
+        "tags": [
+          "Utilisateur"
+        ],
+        "summary": "Activer user",
+        "description": "Activer un utilisateur",
+        "requestBody": {
+          "content": {}
+        },
+        "parameters": [
+          {
+            "name": "user_id",
+            "in": "path",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {}
+            }
+          }
+        }
+      }
+    },
+    "/api/auth/login": {
+      "post": {
+        "tags": [
+          "Authentification"
+        ],
+        "summary": "Login",
+        "description": "Authentifier des utilisateur ou se connecter",
+        "requestBody": {
+          "content": {}
+        },
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {}
+            }
+          }
+        }
+      }
+    },
+    "/api/auth/logout": {
+      "post": {
+        "tags": [
+          "Authentification"
+        ],
+        "summary": "Logout",
+        "description": "Déconnecter un utilisateur ou se déconnecter",
+        "requestBody": {
+          "content": {}
+        },
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {}
+            }
+          }
+        }
+      }
+    },
+    "/api/auth/forgot-password": {
+      "post": {
+        "tags": [
+          "Authentification"
+        ],
+        "summary": "Forgotpassword",
+        "description": "Signaler que le mot de pass à été oublier",
+        "requestBody": {
+          "content": {}
+        },
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {}
+            }
+          }
+        }
+      }
+    },
+    "/ api/auth/reset-password": {
+      "post": {
+        "tags": [
+          "Authentification"
+        ],
+        "summary": "Reset password",
+        "description": "revoyer la demande de reintialisation de mot de passe",
+        "requestBody": {
+          "content": {}
+        },
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {}
+            }
+          }
+        }
+      }
+    },
+    "/api/auth/update-password": {
+      "post": {
+        "tags": [
+          "Authentification"
+        ],
+        "summary": "Update password",
+        "description": "Réintialiser son mots de passe",
+        "requestBody": {
+          "content": {}
+        },
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {}
+            }
+          }
+        }
+      }
+    }
+  }
+}
